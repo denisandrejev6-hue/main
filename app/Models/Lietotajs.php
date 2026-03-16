@@ -18,6 +18,7 @@ class Lietotajs extends Authenticatable
 
     protected $fillable = [
         'vards',
+        'uzvards',
         'loma',
         'epasts',
         'parole',

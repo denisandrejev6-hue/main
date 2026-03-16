@@ -31,6 +31,7 @@ class LietotajuController extends Controller
     {
         $validated = $request->validate([
             'vards' => 'required|max:45',
+            'uzvards' => 'required|max:45',
             'loma'  => 'required|in:Admin,Darbinieks,Lietotajs',
             'epasts' => 'required|email|unique:lietotaji,epasts',
             'parole' => 'required|min:8',
@@ -70,6 +71,7 @@ class LietotajuController extends Controller
     {
         $validated = $request->validate([
             'vards' => 'required|max:45',
+            'uzvards' => 'required|max:45',
             'loma'  => 'required|in:Admin,Darbinieks,Lietotajs',
             'epasts' => 'required|email|unique:lietotaji,epasts,' . $id,
             'parole' => 'nullable|min:8',
