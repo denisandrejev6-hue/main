@@ -22,11 +22,11 @@
                         $imgFiles = ['img1.jpg', 'img2.jpg', 'img3.jpg'];
                         $imgFile = $imgFiles[$index % count($imgFiles)];
                     @endphp
-                    <img src="{{ asset('img/' . $imgFile) }}" alt="Pasakuma attels" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:8px;" />
+                    <img src="{{ asset('img/' . $imgFile) }}" alt="Pasākuma attēls" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:8px;" />
                     @if(!empty($item->apraksts))
                         <p>{{ \Illuminate\Support\Str::limit($item->apraksts, 120) }}</p>
                     @endif
-                    <a href="{{ route('pasakumi.show', $item->ID) }}" class="btn-detail">Detalizeti</a>
+                    <a href="{{ route('pasakumi.show', $item->ID) }}" class="btn-detail">Detalizēti</a>
                 </div>
             @endforeach
         </div>
@@ -41,7 +41,7 @@
                 <tr>
                     <th style="text-align:center;">Nosaukums</th>
                     <th style="text-align:center;">Datums</th>
-                    <th style="text-align:center;">Darbibas</th>
+                    <th style="text-align:center;">Darbības</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,15 +50,14 @@
                         <td style="text-align:center;">{{ $item->nosaukums }}</td>
                         <td style="text-align:center;">{{ $item->datums }}</td>
                         <td style="text-align:center;">
-                            <a href="{{ route('pasakumi.show', $item->ID) }}" class="btn secondary">Detalizeti</a>
-                            @if(auth()->user()->loma !== 'Lietotajs')
-                                <a href="{{ route('pasakumi.edit', $item->ID) }}" class="btn edit">Rediget</a>
-                                <form action="{{ route('pasakumi.destroy', $item->ID) }}" method="POST" style="display:inline;">
+                            <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
+                                <a href="{{ route('pasakumi.edit', $item->ID) }}" class="btn edit">Rediģēt</a>
+                                <form action="{{ route('pasakumi.destroy', $item->ID) }}" method="POST" style="margin:0;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn delete" onclick="return confirm('Vai tiesam dzest?')">Dzest</button>
+                                    <button type="submit" class="btn delete" onclick="return confirm('Vai tiešām dzēst šo ierakstu?')">Dzēst</button>
                                 </form>
-                            @endif
+                            </div>
                         </td>
                     </tr>
                 @endforeach
