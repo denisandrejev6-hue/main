@@ -40,7 +40,7 @@
 </div>
 Admins
 Login: Sergejs@gmail.com
-Password: Admins@123
+Password: Admin@123
 Lietotajs
 Login: martins@gmail.com
 Password:Lietotajs123
