@@ -79,23 +79,20 @@ class PasakumuController extends Controller
         return view('details', ['data' => $item]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        if (auth()->user()->loma === 'Lietotajs') {
-            abort(403);
-        }
-
-        $item = Pasakumi::findOrFail($id);
-        $telpas = \App\Models\Telpa::orderBy('ID')->get();
-        $darbinieki = \App\Models\Lietotajs::where('loma', 'Darbinieks')
-                        ->orderBy('ID')
-                        ->get();
-
-        return view('edit', compact('data', 'telpas', 'darbinieki'));
+public function edit($id)
+{
+    if (auth()->user()->loma === 'Lietotajs') {
+        abort(403);
     }
+
+    $item = Pasakumi::findOrFail($id);
+    $telpas = \App\Models\Telpa::orderBy('ID')->get();
+    $darbinieki = \App\Models\Lietotajs::where('loma', 'Darbinieks')
+                    ->orderBy('ID')
+                    ->get();
+
+    return view('edit', compact('item', 'telpas', 'darbinieki')); 
+}
 
     /**
      * Update the specified resource in storage.
