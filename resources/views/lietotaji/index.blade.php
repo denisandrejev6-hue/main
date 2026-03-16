@@ -14,6 +14,7 @@
         <thead>
             <tr>
                 <th style="text-align:center;">Vārds</th>
+                <th style="text-align:center;">Uzvārds</th>
                 <th style="text-align:center;">E-pasts</th>
                 <th style="text-align:center;">Loma</th>
                 <th style="text-align:center;">Darbības</th>
@@ -23,6 +24,7 @@
             @foreach($data as $item)
                 <tr>
                     <td style="text-align:center;">{{ $item->vards }}</td>
+                    <td style="text-align:center;">{{ $item->uzvards }}</td>
                     <td style="text-align:center;">{{ $item->epasts }}</td>
                     <td style="text-align:center;">{{ $item->loma }}</td>
                     <td style="text-align:center;">

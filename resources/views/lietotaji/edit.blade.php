@@ -23,6 +23,11 @@
             <input type="text" name="vards" value="{{ old('vards', $data->vards) }}" style="width:90%; padding:10px; border-radius:6px;">
         </div>
 
+            <div class="form-control" style="margin-bottom:16px;">
+                <label style="font-weight:700; display:block; margin-bottom:8px;">Uzvārds:</label>
+                <input type="text" name="uzvards" value="{{ old('uzvards', $data->uzvards) }}" style="width:90%; padding:10px; border-radius:6px;">
+            </div>
+
         <div class="form-control" style="margin-bottom:16px;">
             <label style="font-weight:700; display:block; margin-bottom:8px;">E-pasts:</label>
             <input type="email" name="epasts" value="{{ old('epasts', $data->epasts) }}" style="width:90%; padding:10px; border-radius:6px;">

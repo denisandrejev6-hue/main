@@ -6,6 +6,7 @@
 
     <p><strong>ID:</strong> {{ $data->ID }}</p>
     <p><strong>Vārds:</strong> {{ $data->vards }}</p>
+    <p><strong>Uzvārds:</strong> {{ $data->uzvards }}</p>
     <p><strong>E-pasts:</strong> {{ $data->epasts }}</p>
     <p><strong>Loma:</strong> {{ $data->loma }}</p>
 
