@@ -2,14 +2,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Visi ieraksti</h1>
+    <h1>Visi Pasakumi</h1>
 
     @if(session('success'))
         <div class="flash flash-success">{{ session('success') }}</div>
     @endif
 
     @if(auth()->user()->loma !== 'Lietotajs')
-        <a href="{{ route('pasakumi.create') }}" class="btn">Pievienot jaunu ierakstu</a>
+        <a href="{{ route('pasakumi.create') }}" class="btn">Pievienot jaunu pasakumu</a>
     @endif
 
     @if(auth()->user()->loma === 'Lietotajs')
@@ -55,7 +55,7 @@
                                 <form action="{{ route('pasakumi.destroy', $item->ID) }}" method="POST" style="margin:0;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn delete" onclick="return confirm('Vai tiešām dzēst šo ierakstu?')">Dzēst</button>
+                                    <button type="submit" class="btn delete" onclick="return confirm('Vai tiešām dzēst šo pasakumu?')">Dzēst</button>
                                 </form>
                             </div>
                         </td>

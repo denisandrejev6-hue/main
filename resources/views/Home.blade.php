@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <div class="jumbotron bg-light p-5 rounded">
-        <h1 class="display-4">Bibliotēkas Pasakumi</h1>
+        <h1 class="display-4">Sākumlapa</h1>
         <p class="lead">Izpēti brīnumainus pasakumus un stāstus no visas pasaules</p>
         <hr class="my-4">
     </div>

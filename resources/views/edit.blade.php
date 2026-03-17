@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Labot ierakstu</h1>
+    <h1>Labot pasakumu datus</h1>
 
     @if ($errors->any())
         <div class="flash flash-error">
