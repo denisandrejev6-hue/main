@@ -41,10 +41,10 @@
                 <tr>
                     <th style="text-align:center;">Nosaukums</th>
                     <th style="text-align:center;">Datums</th>
-                    <th style="text-align:center;">Darbības</th>
                     <th style="text-align:center;">Sākuma laiks</th>
                     <th style="text-align:center;">Beigu laiks</th>
                     <th style="text-align:center;">Apraksts</th>
+                    <th style="text-align:center;">Darbības</th>
                 </tr>
             </thead>
             <tbody>
