@@ -18,7 +18,8 @@ class Pasakumi extends Model
     protected $fillable = [
         'nosaukums',
         'kategorija',
-        'datums',
+        'datums_no',
+        'datums_lidz',
         'sakuma_laiks',
         'beigu_laiks',
         'apraksts',
