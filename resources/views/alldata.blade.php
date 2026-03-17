@@ -55,7 +55,7 @@
                         <td style="text-align:center;">{{ $item->datums_no }}</td>
                         <td style="text-align:center;">{{ $item->datums_lidz }}</td>
                         <td style="text-align:center;">{{ $item->sakuma_laiks }}</td>
-                        <td style="text-align:center;">{{ $item->beigu_laiks }}</td
+                        <td style="text-align:center;">{{ $item->beigu_laiks }}</td>
                         <td style="text-align:center;">{{ $item->apraksts }}</td>                        
                         <td style="text-align:center;">
                             <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
