@@ -49,8 +49,8 @@ class PasakumuController extends Controller
         $validated = $request->validate([
             'nosaukums'      => 'required|max:45',
             'kategorija'     => 'nullable|max:45',
-            'datums_no'      => 'nullable|date|before:datums_lidz | date_format:d-m-Y',
-            'datums_lidz'    => 'nullable|date|after:datums_no | date_format:d-m-Y',
+            'datums_no'      => 'nullable|date|before:datums_lidz',
+            'datums_lidz'    => 'nullable|date|after:datums_no',
             'sakuma_laiks'   => 'nullable|date_format:H:i|time_before_or_equal:beigu_laiks',
             'beigu_laiks'    => 'nullable|date_format:H:i|time_after_or_equal:sakuma_laiks',
             'apraksts'       => 'nullable|max:255',
