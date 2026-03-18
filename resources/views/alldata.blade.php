@@ -1,131 +1,136 @@
-{{-- resources/views/create.blade.php --}}
+{{-- resources/views/alldata.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
-    <h1>Pievienot jaunu ierakstu</h1>
+    <div style="max-width:1400px; margin:0 auto; padding:20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h1 style="margin:0; color:#333; font-size:28px;">Visi Pasākumi</h1>
 
-    @if ($errors->any())
-        <div class="flash flash-error">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+            @if(auth()->user()->loma !== 'Lietotajs')
+                <a href="{{ route('pasakumi.create') }}" style="background:#4CAF50; color:white; padding:12px 24px; border-radius:8px; text-decoration:none; font-weight:600; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.background='#45a049'" onmouseout="this.style.background='#4CAF50'">+ Pievienot jaunu pasākumu</a>
+            @endif
+        </div>
+
+        @if(session('success'))
+            <div style="background:#d4edda; border-left:4px solid #28a745; color:#155724; padding:16px; margin-bottom:24px; border-radius:4px; font-weight:500;">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(auth()->user()->loma === 'Lietotajs')
+            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:24px; margin-top:16px;">
+                @foreach($data as $index => $item)
+                    <div style="background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'">
+                        <div style="padding:20px;">
+                            <h3 style="margin:0 0 12px 0; color:#333; font-size:20px;">{{ $item->nosaukums }}</h3>
+                            
+                            <div style="margin-bottom:16px;">
+                                <p style="margin:8px 0; color:#666;"><strong style="color:#333;">Datums:</strong> 
+                                    {{ $item->datums_no }}
+                                    @if($item->datums_lidz && $item->datums_lidz != $item->datums_no)
+                                        - {{ $item->datums_lidz }}
+                                    @endif
+                                </p>
+                                <p style="margin:8px 0; color:#666;"><strong style="color:#333;">Laiks:</strong> 
+                                    {{ $item->sakuma_laiks }} - {{ $item->beigu_laiks }}
+                                </p>
+                            </div>
+                            
+                            @php
+                                $imgFiles = ['img1.jpg', 'img2.jpg', 'img3.jpg'];
+                                $imgFile = $imgFiles[$index % count($imgFiles)];
+                            @endphp
+                            <img src="{{ asset('img/' . $imgFile) }}" alt="Pasākuma attēls" style="width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:16px;">
+                            
+                            @if(!empty($item->apraksts))
+                                <p style="color:#666; line-height:1.5; margin-bottom:16px;">{{ \Illuminate\Support\Str::limit($item->apraksts, 100) }}</p>
+                            @endif
+                            
+                            <a href="{{ route('pasakumi.show', $item->ID) }}" style="display:inline-block; background:#2196F3; color:white; padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:500; transition:background 0.3s;" onmouseover="this.style.background='#1976D2'" onmouseout="this.style.background='#2196F3'">Detalizēti →</a>
+                        </div>
+                    </div>
                 @endforeach
-            </ul>
-        </div>
-    @endif
+            </div>
+        @else
+            <div style="background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin-top:16px;">
+                <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                    <thead>
+                        <tr style="background:#f5f5f5; border-bottom:2px solid #ddd;">
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Nosaukums</th>
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Sākuma datums</th>
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Beigu datums</th>
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Sākuma laiks</th>
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Beigu laiks</th>
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Apraksts</th>
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Atbildīga persona</th>
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Telpa</th>
+                            <th style="padding:16px; text-align:left; color:#333; font-weight:600;">Darbības</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data as $item)
+                            <tr style="border-bottom:1px solid #eee; transition:background 0.2s;" onmouseover="this.style.background='#f9f9f9'" onmouseout="this.style.background='white'">
+                                <td style="padding:16px;">{{ $item->nosaukums }}</td>
+                                <td style="padding:16px;">{{ $item->datums_no ?? '—' }}</td>
+                                <td style="padding:16px;">{{ $item->datums_lidz ?? '—' }}</td>
+                                <td style="padding:16px;">{{ $item->sakuma_laiks ?? '—' }}</td>
+                                <td style="padding:16px;">{{ $item->beigu_laiks ?? '—' }}</td>
+                                <td style="padding:16px; max-width:200px;">
+                                    <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                                        {{ $item->apraksts ?: '—' }}
+                                    </div>
+                                </td>
+                                <td style="padding:16px;">
+                                    @if($item->darbinieks)
+                                        {{ $item->darbinieks->vards ?? 'Nav norādīts' }}
+                                    @else
+                                        <span style="color:#999;">Nav norādīts</span>
+                                    @endif
+                                </td>
+                                <td style="padding:16px;">
+                                    @if($item->telpa)
+                                        {{ $item->telpa->nosaukums ?? 'Nav norādīta' }}
+                                    @else
+                                        <span style="color:#999;">Nav norādīta</span>
+                                    @endif
+                                </td>
+                                <td style="padding:16px;">
+                                    <div style="display:flex; gap:8px;">
+                                        <a href="{{ route('pasakumi.edit', $item->ID) }}" style="background:#FFC107; color:#333; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:500; transition:background 0.3s;" onmouseover="this.style.background='#FFB300'" onmouseout="this.style.background='#FFC107'">Rediģēt</a>
+                                        
+                                        <form action="{{ route('pasakumi.destroy', $item->ID) }}" method="POST" style="margin:0;" onsubmit="return confirm('Vai tiešām vēlaties dzēst šo pasākumu?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="background:#f44336; color:white; padding:6px 12px; border:none; border-radius:4px; font-size:12px; font-weight:500; cursor:pointer; transition:background 0.3s;" onmouseover="this.style.background='#d32f2f'" onmouseout="this.style.background='#f44336'">Dzēst</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            
+            @if(count($data) == 0)
+                <div style="text-align:center; padding:48px; background:white; border-radius:12px; margin-top:16px;">
+                    <p style="color:#999; font-size:16px;">Nav pievienotu pasākumu</p>
+                </div>
+            @endif
+        @endif
+    </div>
 
-    <form action="{{ route('pasakumi.store') }}" method="POST" style="max-width:800px;">
-        @csrf
-        
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
-            <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Nosaukums:</label>
-                <input type="text" name="nosaukums" value="{{ old('nosaukums') }}" style="width:90%; padding:10px; border-radius:6px;">
-            </div>
-            <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Kategorija:</label>
-                <input type="text" name="kategorija" value="{{ old('kategorija') }}" style="width:90%; padding:10px; border-radius:6px;">
-            </div>
-        </div>
-        
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px;">
-            <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Datums:</label>
-                <input type="date" name="datums" value="{{ old('datums') }}" style="width:90%; padding:10px; border-radius:6px;">
-            </div>
-            <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Sākuma laiks:</label>
-                <select name="sakuma_laiks" id="sakuma_laiks" style="width:90%; padding:10px; border-radius:6px;" onchange="validateTimeRange()">
-                    <option value="">-- izvēlieties laiku --</option>
-                    @php
-                        $start = strtotime('00:00');
-                        $end = strtotime('23:30');
-                        for ($i = $start; $i <= $end; $i += 1800) { // 1800 sekundes = 30 minūtes
-                            $time = date('H:i', $i);
-                            $selected = old('sakuma_laiks') == $time ? 'selected' : '';
-                            echo "<option value=\"$time\" $selected>$time</option>";
-                        }
-                    @endphp
-                </select>
-                <small style="color: #ffcdd8; margin-top: 4px; display: none;" id="start_error">Sākuma laiks nedrīkst būt pēc beigu laika</small>
-            </div>
-            <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Beigu laiks:</label>
-                <select name="beigu_laiks" id="beigu_laiks" style="width:90%; padding:10px; border-radius:6px;" onchange="validateTimeRange()">
-                    <option value="">-- izvēlieties laiku --</option>
-                    @php
-                        $start = strtotime('00:00');
-                        $end = strtotime('23:30');
-                        for ($i = $start; $i <= $end; $i += 1800) {
-                            $time = date('H:i', $i);
-                            $selected = old('beigu_laiks') == $time ? 'selected' : '';
-                            echo "<option value=\"$time\" $selected>$time</option>";
-                        }
-                    @endphp
-                </select>
-                <small style="color: #ffcdd8; margin-top: 4px; display: none;" id="end_error">Beigu laiks nedrīkst būt pirms sākuma laika</small>
-            </div>
-        </div>
-        
-        <div class="form-control" style="margin-bottom:16px;">
-            <label style="font-weight:700; display:block; margin-bottom:8px;">Apraksts:</label>
-            <textarea name="apraksts" style="width:100%; padding:10px; border-radius:6px; min-height:80px;">{{ old('apraksts') }}</textarea>
-        </div>
-        
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
-            <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Darbinieks:</label>
-                <select name="darbinieks_id" style="width:90%; padding:10px; border-radius:6px;">
-                    <option value="">-- izvēlieties darbinieku --</option>
-                    @foreach($darbinieki as $d)
-                        <option value="{{ $d->ID }}" {{ old('darbinieks_id') == $d->ID ? 'selected' : '' }}>{{ $d->vards }} ({{ $d->ID }})</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Telpa:</label>
-                <select name="telpa_id" style="width:90%; padding:10px; border-radius:6px;">
-                    <option value="">-- izvēlieties telpu --</option>
-                    @foreach($telpas as $t)
-                        <option value="{{ $t->ID }}" {{ old('telpa_id') == $t->ID ? 'selected' : '' }}>{{ $t->nosaukums }} ({{ $t->ID }})</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        
-        <div style="display:flex; gap:12px;">
-            <button type="submit" class="btn">Saglabāt</button>
-            <a href="{{ url()->previous() }}" class="btn secondary">Atcelt</a>
-        </div>
-    </form>
-
-    <script>
-        function validateTimeRange() {
-            const startSelect = document.getElementById('sakuma_laiks');
-            const endSelect = document.getElementById('beigu_laiks');
-            const startError = document.getElementById('start_error');
-            const endError = document.getElementById('end_error');
-
-            // Reset styles
-            startSelect.style.borderColor = '';
-            endSelect.style.borderColor = '';
-            startError.style.display = 'none';
-            endError.style.display = 'none';
-
-            if (startSelect.value && endSelect.value) {
-                if (startSelect.value > endSelect.value) {
-                    // Start time is after end time
-                    startError.style.display = 'block';
-                    endError.style.display = 'block';
-                    startSelect.style.borderColor = '#ff4d7d';
-                    endSelect.style.borderColor = '#ff4d7d';
-                }
-            }
+    <style>
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
         }
-
-        // Palaist validāciju lapas ielādes brīdī, ja ir saglabātas vecās vērtības
-        window.onload = function() {
-            validateTimeRange();
-        };
-    </script>
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
 @endsection
