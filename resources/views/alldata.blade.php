@@ -324,7 +324,7 @@
         }
     }
     
-    /* Animācijas */
+    /* Animācijas – visas rindas parādās vienlaicīgi */
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -332,13 +332,6 @@
     
     tbody tr {
         animation: fadeIn 0.5s ease-out;
-        animation-fill-mode: both;
-    }
-    
-    @for $i from 1 through 20 {
-        tbody tr:nth-child(#{$i}) {
-            animation-delay: #{$i * 0.05}s;
-        }
     }
     
     /* Statusa indikatori */
