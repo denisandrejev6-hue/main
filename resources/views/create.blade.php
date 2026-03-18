@@ -43,22 +43,22 @@
                 </div>
             </div>
 
-            <!-- Datumi -->
+            <!-- Datumi - FIXED VERSION -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
-                <div>
+                <div style="position:relative;">
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Datums no <span style="color:#f44336;">*</span></label>
                     <input type="date" name="datums_no" value="{{ old('datums_no') }}" 
-                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('datums_no') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('datums_no') ? '#fff8f8' : '#fafafa' }}; color:#333;"
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('datums_no') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('datums_no') ? '#fff8f8' : '#fafafa' }}; color:#333; position:relative; z-index:1;"
                         onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
                         onblur="this.style.borderColor='{{ $errors->has('datums_no') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('datums_no') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
                     @if($errors->has('datums_no'))
                         <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('datums_no') }}</small>
                     @endif
                 </div>
-                <div>
+                <div style="position:relative;">
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Datums līdz <span style="color:#f44336;">*</span></label>
                     <input type="date" name="datums_lidz" value="{{ old('datums_lidz') }}" 
-                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('datums_lidz') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('datums_lidz') ? '#fff8f8' : '#fafafa' }}; color:#333;"
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('datums_lidz') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('datums_lidz') ? '#fff8f8' : '#fafafa' }}; color:#333; position:relative; z-index:1;"
                         onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
                         onblur="this.style.borderColor='{{ $errors->has('datums_lidz') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('datums_lidz') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
                     @if($errors->has('datums_lidz'))
@@ -213,17 +213,10 @@
             20%, 40%, 60%, 80% { transform: translateX(2px); }
         }
         
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            background: transparent;
-            bottom: 0;
-            color: transparent;
-            cursor: pointer;
-            height: auto;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: auto;
+        /* FIXED: Noņemam pozicionēšanu no date input */
+        input[type="date"] {
+            position: relative;
+            z-index: 1;
         }
         
         select {
