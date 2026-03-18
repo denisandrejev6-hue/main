@@ -27,6 +27,14 @@ class Pasakumi extends Model
         'telpa_id',
     ];
 
+    // relationships
+    public function telpa()
+    {
+        return $this->belongsTo(Telpa::class, 'telpa_id', 'ID');    
 
-
+    }
+    
+    public function darbinieks()
+    {
+        return $this->belongsTo(Lietotajs::class, 'darbinieks_id', 'ID');
     }
