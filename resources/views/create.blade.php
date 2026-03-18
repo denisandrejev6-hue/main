@@ -30,12 +30,17 @@
         
         <div style="display:grid; grid-template-columns:1fr 2fr; gap:16px; margin-bottom:16px;">
             <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Datums:</label>
-                <input type="date" name="datums" value="{{ old('datums') }}" style="width:90%; padding:10px; border-radius:6px; border:1px solid #ddd;">
+                <label style="font-weight:700; display:block; margin-bottom:8px;">Datums no:</label>
+                <input type="date" name="datums_no" value="{{ old('datums_no') }}" style="width:90%; padding:10px; border-radius:6px; border:1px solid #ddd;">
             </div>
-            
+            <div class="form-control">
+                <label style="font-weight:700; display:block; margin-bottom:8px;">Datums līdz:</label>
+                <input type="date" name="datums_lidz" value="{{ old('datums_lidz') }}" style="width:90%; padding:10px; border-radius:6px; border:1px solid #ddd;">
+            </div>
+        </div>
+
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-                {{-- Sākuma laiks --}}
+                <!-- {{-- Sākuma laiks --}} -->
                 <div class="form-control">
                     <label style="font-weight:700; display:block; margin-bottom:8px;">Sākuma laiks:</label>
                     <div style="display:flex; gap:8px; align-items:center;">
@@ -61,7 +66,7 @@
                     <small style="color: #ff4d7d; margin-top: 4px; display: none; font-size:12px;" id="start_error">Sākuma laiks nav korekts</small>
                 </div>
                 
-                {{-- Beigu laiks --}}
+                <!-- {{-- Beigu laiks --}} -->
                 <div class="form-control">
                     <label style="font-weight:700; display:block; margin-bottom:8px;">Beigu laiks:</label>
                     <div style="display:flex; gap:8px; align-items:center;">
