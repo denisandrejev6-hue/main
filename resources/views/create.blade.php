@@ -30,9 +30,15 @@
         
         <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px;">
             <div class="form-control">
-                <label style="font-weight:700; display:block; margin-bottom:8px;">Datums:</label>
-                <input type="date" name="datums" value="{{ old('datums') }}" style="width:90%; padding:10px; border-radius:6px;">
+                <label style="font-weight:700; display:block; margin-bottom:8px;">Datums no:</label>
+                <input type="date" name="datums_no" value="{{ old('datums_no') }}" style="width:90%; padding:10px; border-radius:6px;">
             </div>
+
+            <div class="form-control">
+                <label style="font-weight:700; display:block; margin-bottom:8px;">Datums līdz:</label>
+                <input type="date" name="datums_lidz" value="{{ old('datums_lidz') }}" style="width:90%; padding:10px; border-radius:6px;">
+            </div>
+
             <div class="form-control">
                 <label style="font-weight:700; display:block; margin-bottom:8px;">Sākuma laiks:</label>
                 <select name="sakuma_laiks" id="sakuma_laiks" style="width:90%; padding:10px; border-radius:6px;" onchange="validateTimeRange()">
