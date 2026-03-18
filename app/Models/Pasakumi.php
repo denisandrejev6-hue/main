@@ -27,14 +27,6 @@ class Pasakumi extends Model
         'telpa_id',
     ];
 
-public function darbinieks()
-{
-    return $this->belongsTo(Darbinieks::class, 'darbinieks_id');
-}
 
-public function telpa()
-{
-    return $this->belongsTo(Telpa::class, 'telpa_id');
-}
 
     }

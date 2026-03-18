@@ -46,7 +46,7 @@
                     <th style="text-align:center;">Beigu laiks</th>
                     <th style="text-align:center;">Apraksts</th>
                     <th style="text-align:center;">Atbildīga persona</th>
-                    <th style="text-align:center;">Telpa</th>
+                    <th style="text-align:center;">Telpa </th>
                     <th style="text-align:center;">Darbības</th>
                 </tr>
             </thead>
@@ -59,25 +59,8 @@
                         <td style="text-align:center;">{{ $item->sakuma_laiks }}</td>
                         <td style="text-align:center;">{{ $item->beigu_laiks }}</td>
                         <td style="text-align:center;">{{ $item->apraksts }}</td>
-                        
-                        <!-- Atbildīgā persona - vārds no darbinieku tabulas -->
-                        <td style="text-align:center;">
-                            @if($item->darbinieks)
-                                {{ $item->darbinieks->vards }} {{ $item->darbinieks->uzvards ?? '' }}
-                            @else
-                                <span style="color: #999;">Nav norādīts</span>
-                            @endif
-                        </td>
-                        
-                        <!-- Telpa - nosaukums no telpu tabulas -->
-                        <td style="text-align:center;">
-                            @if($item->telpa)
-                                {{ $item->telpa->nosaukums }}
-                            @else
-                                <span style="color: #999;">Nav norādīta</span>
-                            @endif
-                        </td>
-                        
+                        <td style="text-align:center;">{{ $item->darbinieks->vards ?? 'Nav norādīts' }}</td>
+                        <td style="text-align:center;">{{ $item->telpa->nosaukums ?? 'Nav norādīta' }}</td>
                         <td style="text-align:center;">
                             <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
                                 <a href="{{ route('pasakumi.edit', $item->ID) }}" class="btn edit">Rediģēt</a>
