@@ -80,8 +80,8 @@ class PasakumuController extends Controller
         return view('details', ['data' => $item]);
     }
 
-public function edit($id)
-{
+    public function edit($id)
+    {
     if (auth()->user()->loma === 'Lietotajs') {
         abort(403);
     }
@@ -93,7 +93,7 @@ public function edit($id)
                     ->get();
 
     return view('edit', compact('item', 'telpas', 'darbinieki')); 
-}
+    }
 
     /**
      * Update the specified resource in storage.
@@ -145,4 +145,13 @@ public function edit($id)
         }
         return redirect('/pasakumi')->with('success', 'Dati veiksmīgi izdzēsti');
     }
+
+
+    public function alldata()
+        {
+            $data = Pasakumi::with(['darbinieks', 'telpa'])->get(); // Ielādē relācijas
+           return view('alldata', compact('data'));
+        }
+
+
 }
