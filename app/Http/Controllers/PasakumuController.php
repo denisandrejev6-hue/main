@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasakumi;
+use App\Models\Telpa;
+use App\Models\Lietotajs;
 
 class PasakumuController extends Controller
 {
