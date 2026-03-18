@@ -35,12 +35,34 @@
             </div>
             <div class="form-control">
                 <label style="font-weight:700; display:block; margin-bottom:8px;">Sākuma laiks:</label>
-                <input type="time" name="sakuma_laiks" id="sakuma_laiks" value="{{ old('sakuma_laiks') }}" style="width:90%; padding:10px; border-radius:6px;" onchange="validateTimeRange()">
+                <select name="sakuma_laiks" id="sakuma_laiks" style="width:90%; padding:10px; border-radius:6px;" onchange="validateTimeRange()">
+                    <option value="">-- izvēlieties laiku --</option>
+                    @php
+                        $start = strtotime('00:00');
+                        $end = strtotime('23:30');
+                        for ($i = $start; $i <= $end; $i += 1800) { // 1800 sekundes = 30 minūtes
+                            $time = date('H:i', $i);
+                            $selected = old('sakuma_laiks') == $time ? 'selected' : '';
+                            echo "<option value=\"$time\" $selected>$time</option>";
+                        }
+                    @endphp
+                </select>
                 <small style="color: #ffcdd8; margin-top: 4px; display: none;" id="start_error">Sākuma laiks nedrīkst būt pēc beigu laika</small>
             </div>
             <div class="form-control">
                 <label style="font-weight:700; display:block; margin-bottom:8px;">Beigu laiks:</label>
-                <input type="time" name="beigu_laiks" id="beigu_laiks" value="{{ old('beigu_laiks') }}" style="width:90%; padding:10px; border-radius:6px;" onchange="validateTimeRange()">
+                <select name="beigu_laiks" id="beigu_laiks" style="width:90%; padding:10px; border-radius:6px;" onchange="validateTimeRange()">
+                    <option value="">-- izvēlieties laiku --</option>
+                    @php
+                        $start = strtotime('00:00');
+                        $end = strtotime('23:30');
+                        for ($i = $start; $i <= $end; $i += 1800) {
+                            $time = date('H:i', $i);
+                            $selected = old('beigu_laiks') == $time ? 'selected' : '';
+                            echo "<option value=\"$time\" $selected>$time</option>";
+                        }
+                    @endphp
+                </select>
                 <small style="color: #ffcdd8; margin-top: 4px; display: none;" id="end_error">Beigu laiks nedrīkst būt pirms sākuma laika</small>
             </div>
         </div>
@@ -79,26 +101,31 @@
 
     <script>
         function validateTimeRange() {
-            const startInput = document.getElementById('sakuma_laiks');
-            const endInput = document.getElementById('beigu_laiks');
+            const startSelect = document.getElementById('sakuma_laiks');
+            const endSelect = document.getElementById('beigu_laiks');
             const startError = document.getElementById('start_error');
             const endError = document.getElementById('end_error');
 
             // Reset styles
-            startInput.style.borderColor = '';
-            endInput.style.borderColor = '';
+            startSelect.style.borderColor = '';
+            endSelect.style.borderColor = '';
             startError.style.display = 'none';
             endError.style.display = 'none';
 
-            if (startInput.value && endInput.value) {
-                if (startInput.value > endInput.value) {
+            if (startSelect.value && endSelect.value) {
+                if (startSelect.value > endSelect.value) {
                     // Start time is after end time
                     startError.style.display = 'block';
                     endError.style.display = 'block';
-                    startInput.style.borderColor = '#ff4d7d';
-                    endInput.style.borderColor = '#ff4d7d';
+                    startSelect.style.borderColor = '#ff4d7d';
+                    endSelect.style.borderColor = '#ff4d7d';
                 }
             }
         }
+
+        // Palaist validāciju lapas ielādes brīdī, ja ir saglabātas vecās vērtības
+        window.onload = function() {
+            validateTimeRange();
+        };
     </script>
 @endsection
