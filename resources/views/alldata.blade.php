@@ -1,9 +1,9 @@
-{{-- resources/views/edit.blade.php --}}
+{{-- resources/views/create.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
     <div style="max-width:900px; margin:40px auto; padding:0 20px;">
-        <h1 style="color:#333; font-size:32px; margin-bottom:32px; border-bottom:3px solid #4CAF50; padding-bottom:12px;">Labot pasākuma datus</h1>
+        <h1 style="color:#333; font-size:32px; margin-bottom:32px; border-bottom:3px solid #4CAF50; padding-bottom:12px;">Pievienot jaunu pasākumu</h1>
 
         @if ($errors->any())
             <div style="background:#ffebee; border-left:5px solid #f44336; color:#c62828; padding:16px 20px; margin-bottom:30px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
@@ -16,15 +16,14 @@
             </div>
         @endif
 
-        <form action="{{ route('pasakumi.update', $item->ID) }}" method="POST" style="background:white; padding:32px; border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+        <form action="{{ route('pasakumi.store') }}" method="POST" style="background:white; padding:32px; border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,0.12);">
             @csrf
-            @method('PUT')
             
             <!-- Nosaukums un Kategorija -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Nosaukums <span style="color:#f44336;">*</span></label>
-                    <input type="text" name="nosaukums" value="{{ old('nosaukums', $item->nosaukums) }}" placeholder="Ievadiet pasākuma nosaukumu" 
+                    <input type="text" name="nosaukums" value="{{ old('nosaukums') }}" placeholder="Ievadiet pasākuma nosaukumu" 
                         style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('nosaukums') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('nosaukums') ? '#fff8f8' : '#fafafa' }};"
                         onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
                         onblur="this.style.borderColor='{{ $errors->has('nosaukums') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('nosaukums') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
@@ -34,7 +33,7 @@
                 </div>
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Kategorija <span style="color:#f44336;">*</span></label>
-                    <input type="text" name="kategorija" value="{{ old('kategorija', $item->kategorija) }}" placeholder="Ievadiet kategoriju" 
+                    <input type="text" name="kategorija" value="{{ old('kategorija') }}" placeholder="Ievadiet kategoriju" 
                         style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('kategorija') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('kategorija') ? '#fff8f8' : '#fafafa' }};"
                         onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
                         onblur="this.style.borderColor='{{ $errors->has('kategorija') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('kategorija') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
@@ -44,11 +43,11 @@
                 </div>
             </div>
 
-            <!-- Datumi -->
+            <!-- Datumi - FIXED VERSION -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
                 <div style="position:relative;">
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Datums no <span style="color:#f44336;">*</span></label>
-                    <input type="date" name="datums_no" value="{{ old('datums_no', $item->datums_no) }}" 
+                    <input type="date" name="datums_no" value="{{ old('datums_no') }}" 
                         style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('datums_no') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('datums_no') ? '#fff8f8' : '#fafafa' }}; color:#333; position:relative; z-index:1;"
                         onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
                         onblur="this.style.borderColor='{{ $errors->has('datums_no') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('datums_no') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
@@ -58,7 +57,7 @@
                 </div>
                 <div style="position:relative;">
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Datums līdz <span style="color:#f44336;">*</span></label>
-                    <input type="date" name="datums_lidz" value="{{ old('datums_lidz', $item->datums_lidz) }}" 
+                    <input type="date" name="datums_lidz" value="{{ old('datums_lidz') }}" 
                         style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('datums_lidz') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('datums_lidz') ? '#fff8f8' : '#fafafa' }}; color:#333; position:relative; z-index:1;"
                         onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
                         onblur="this.style.borderColor='{{ $errors->has('datums_lidz') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('datums_lidz') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
@@ -83,7 +82,7 @@
                             $end = strtotime('23:30');
                             for ($i = $start; $i <= $end; $i += 1800) {
                                 $time = date('H:i', $i);
-                                $selected = old('sakuma_laiks', $item->sakuma_laiks) == $time ? 'selected' : '';
+                                $selected = old('sakuma_laiks') == $time ? 'selected' : '';
                                 echo "<option value=\"$time\" $selected style=\"padding:8px;\">$time</option>";
                             }
                         @endphp
@@ -104,7 +103,7 @@
                         @php
                             for ($i = $start; $i <= $end; $i += 1800) {
                                 $time = date('H:i', $i);
-                                $selected = old('beigu_laiks', $item->beigu_laiks) == $time ? 'selected' : '';
+                                $selected = old('beigu_laiks') == $time ? 'selected' : '';
                                 echo "<option value=\"$time\" $selected style=\"padding:8px;\">$time</option>";
                             }
                         @endphp
@@ -122,7 +121,7 @@
                 <textarea name="apraksts" placeholder="Ievadiet pasākuma aprakstu..." 
                     style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('apraksts') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; min-height:120px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('apraksts') ? '#fff8f8' : '#fafafa' }}; font-family:inherit; resize:vertical;"
                     onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
-                    onblur="this.style.borderColor='{{ $errors->has('apraksts') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('apraksts') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">{{ old('apraksts', $item->apraksts) }}</textarea>
+                    onblur="this.style.borderColor='{{ $errors->has('apraksts') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('apraksts') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">{{ old('apraksts') }}</textarea>
                 @if($errors->has('apraksts'))
                     <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('apraksts') }}</small>
                 @endif
@@ -138,7 +137,7 @@
                         onblur="this.style.borderColor='{{ $errors->has('darbinieks_id') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('darbinieks_id') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
                         <option value="" style="color:#999;">-- Izvēlieties darbinieku --</option>
                         @foreach($darbinieki as $d)
-                            <option value="{{ $d->ID }}" {{ old('darbinieks_id', $item->darbinieks_id) == $d->ID ? 'selected' : '' }} style="padding:8px;">{{ $d->vards }}</option>
+                            <option value="{{ $d->ID }}" {{ old('darbinieks_id') == $d->ID ? 'selected' : '' }} style="padding:8px;">{{ $d->vards }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('darbinieks_id'))
@@ -153,7 +152,7 @@
                         onblur="this.style.borderColor='{{ $errors->has('telpa_id') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('telpa_id') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
                         <option value="" style="color:#999;">-- Izvēlieties telpu --</option>
                         @foreach($telpas as $t)
-                            <option value="{{ $t->ID }}" {{ old('telpa_id', $item->telpa_id) == $t->ID ? 'selected' : '' }} style="padding:8px;">{{ $t->nosaukums }}</option>
+                            <option value="{{ $t->ID }}" {{ old('telpa_id') == $t->ID ? 'selected' : '' }} style="padding:8px;">{{ $t->nosaukums }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('telpa_id'))
@@ -165,7 +164,7 @@
             <!-- Pogas -->
             <div style="display:flex; gap:16px; justify-content:flex-end; border-top:2px solid #f0f0f0; padding-top:24px;">
                 <a href="{{ url()->previous() }}" style="background:#9e9e9e; color:white; padding:14px 32px; border-radius:50px; text-decoration:none; font-weight:600; font-size:16px; transition:all 0.3s; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:inline-block;" onmouseover="this.style.background='#757575'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'" onmouseout="this.style.background='#9e9e9e'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">Atcelt</a>
-                <button type="submit" style="background:linear-gradient(135deg, #4CAF50, #45a049); color:white; padding:14px 40px; border:none; border-radius:50px; cursor:pointer; font-weight:600; font-size:16px; transition:all 0.3s; box-shadow:0 2px 8px rgba(76,175,80,0.3);" onmouseover="this.style.background='linear-gradient(135deg, #45a049, #3d8b40)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(76,175,80,0.4)'" onmouseout="this.style.background='linear-gradient(135deg, #4CAF50, #45a049)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(76,175,80,0.3)'">✏️ Atjaunināt pasākumu</button>
+                <button type="submit" style="background:linear-gradient(135deg, #4CAF50, #45a049); color:white; padding:14px 40px; border:none; border-radius:50px; cursor:pointer; font-weight:600; font-size:16px; transition:all 0.3s; box-shadow:0 2px 8px rgba(76,175,80,0.3);" onmouseover="this.style.background='linear-gradient(135deg, #45a049, #3d8b40)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(76,175,80,0.4)'" onmouseout="this.style.background='linear-gradient(135deg, #4CAF50, #45a049)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(76,175,80,0.3)'">➕ Saglabāt pasākumu</button>
             </div>
         </form>
     </div>
@@ -214,6 +213,7 @@
             20%, 40%, 60%, 80% { transform: translateX(2px); }
         }
         
+        /* FIXED: Noņemam pozicionēšanu no date input */
         input[type="date"] {
             position: relative;
             z-index: 1;
@@ -231,4 +231,4 @@
             outline: none;
         }
     </style>
-@endsection
+@endsection 
