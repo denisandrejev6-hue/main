@@ -23,11 +23,23 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Nosaukums <span style="color:#f44336;">*</span></label>
-                    <input type="text" name="nosaukums" value="{{ old('nosaukums') }}" placeholder="Ievadiet pasākuma nosaukumu" style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; transition:all 0.3s; background:#fafafa;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <input type="text" name="nosaukums" value="{{ old('nosaukums') }}" placeholder="Ievadiet pasākuma nosaukumu" 
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('nosaukums') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('nosaukums') ? '#fff8f8' : '#fafafa' }};"
+                        onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                        onblur="this.style.borderColor='{{ $errors->has('nosaukums') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('nosaukums') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
+                    @if($errors->has('nosaukums'))
+                        <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('nosaukums') }}</small>
+                    @endif
                 </div>
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Kategorija <span style="color:#f44336;">*</span></label>
-                    <input type="text" name="kategorija" value="{{ old('kategorija') }}" placeholder="Ievadiet kategoriju" style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; transition:all 0.3s; background:#fafafa;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <input type="text" name="kategorija" value="{{ old('kategorija') }}" placeholder="Ievadiet kategoriju" 
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('kategorija') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('kategorija') ? '#fff8f8' : '#fafafa' }};"
+                        onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                        onblur="this.style.borderColor='{{ $errors->has('kategorija') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('kategorija') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
+                    @if($errors->has('kategorija'))
+                        <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('kategorija') }}</small>
+                    @endif
                 </div>
             </div>
 
@@ -35,11 +47,23 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Datums no <span style="color:#f44336;">*</span></label>
-                    <input type="date" name="datums_no" value="{{ old('datums_no') }}" style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; transition:all 0.3s; background:#fafafa; color:#333;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <input type="date" name="datums_no" value="{{ old('datums_no') }}" 
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('datums_no') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('datums_no') ? '#fff8f8' : '#fafafa' }}; color:#333;"
+                        onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                        onblur="this.style.borderColor='{{ $errors->has('datums_no') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('datums_no') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
+                    @if($errors->has('datums_no'))
+                        <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('datums_no') }}</small>
+                    @endif
                 </div>
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Datums līdz <span style="color:#f44336;">*</span></label>
-                    <input type="date" name="datums_lidz" value="{{ old('datums_lidz') }}" style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; transition:all 0.3s; background:#fafafa; color:#333;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <input type="date" name="datums_lidz" value="{{ old('datums_lidz') }}" 
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('datums_lidz') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('datums_lidz') ? '#fff8f8' : '#fafafa' }}; color:#333;"
+                        onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                        onblur="this.style.borderColor='{{ $errors->has('datums_lidz') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('datums_lidz') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
+                    @if($errors->has('datums_lidz'))
+                        <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('datums_lidz') }}</small>
+                    @endif
                 </div>
             </div>
 
@@ -47,7 +71,11 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Sākuma laiks <span style="color:#f44336;">*</span></label>
-                    <select name="sakuma_laiks" id="sakuma_laiks" style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; transition:all 0.3s; background:#fafafa; cursor:pointer;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'" onchange="validateTimeRange()">
+                    <select name="sakuma_laiks" id="sakuma_laiks" 
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('sakuma_laiks') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('sakuma_laiks') ? '#fff8f8' : '#fafafa' }}; cursor:pointer;"
+                        onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                        onblur="this.style.borderColor='{{ $errors->has('sakuma_laiks') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('sakuma_laiks') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'"
+                        onchange="validateTimeRange()">
                         <option value="" style="color:#999;">-- Izvēlieties sākuma laiku --</option>
                         @php
                             $start = strtotime('00:00');
@@ -59,11 +87,18 @@
                             }
                         @endphp
                     </select>
+                    @if($errors->has('sakuma_laiks'))
+                        <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('sakuma_laiks') }}</small>
+                    @endif
                     <small style="color: #f44336; margin-top: 8px; display: none; font-size:13px; font-weight:500;" id="start_error">❌ Sākuma laiks nedrīkst būt pēc beigu laika</small>
                 </div>
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Beigu laiks <span style="color:#f44336;">*</span></label>
-                    <select name="beigu_laiks" id="beigu_laiks" style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; transition:all 0.3s; background:#fafafa; cursor:pointer;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'" onchange="validateTimeRange()">
+                    <select name="beigu_laiks" id="beigu_laiks" 
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('beigu_laiks') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('beigu_laiks') ? '#fff8f8' : '#fafafa' }}; cursor:pointer;"
+                        onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                        onblur="this.style.borderColor='{{ $errors->has('beigu_laiks') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('beigu_laiks') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'"
+                        onchange="validateTimeRange()">
                         <option value="" style="color:#999;">-- Izvēlieties beigu laiku --</option>
                         @php
                             for ($i = $start; $i <= $end; $i += 1800) {
@@ -73,6 +108,9 @@
                             }
                         @endphp
                     </select>
+                    @if($errors->has('beigu_laiks'))
+                        <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('beigu_laiks') }}</small>
+                    @endif
                     <small style="color: #f44336; margin-top: 8px; display: none; font-size:13px; font-weight:500;" id="end_error">❌ Beigu laiks nedrīkst būt pirms sākuma laika</small>
                 </div>
             </div>
@@ -80,28 +118,46 @@
             <!-- Apraksts -->
             <div style="margin-bottom:24px;">
                 <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Apraksts</label>
-                <textarea name="apraksts" placeholder="Ievadiet pasākuma aprakstu..." style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; min-height:120px; font-size:15px; transition:all 0.3s; background:#fafafa; font-family:inherit; resize:vertical;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'">{{ old('apraksts') }}</textarea>
+                <textarea name="apraksts" placeholder="Ievadiet pasākuma aprakstu..." 
+                    style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('apraksts') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; min-height:120px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('apraksts') ? '#fff8f8' : '#fafafa' }}; font-family:inherit; resize:vertical;"
+                    onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                    onblur="this.style.borderColor='{{ $errors->has('apraksts') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('apraksts') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">{{ old('apraksts') }}</textarea>
+                @if($errors->has('apraksts'))
+                    <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('apraksts') }}</small>
+                @endif
             </div>
             
             <!-- Darbinieks un Telpa -->
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px;">
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Darbinieks <span style="color:#f44336;">*</span></label>
-                    <select name="darbinieks_id" style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; transition:all 0.3s; background:#fafafa; cursor:pointer;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <select name="darbinieks_id" 
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('darbinieks_id') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('darbinieks_id') ? '#fff8f8' : '#fafafa' }}; cursor:pointer;"
+                        onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                        onblur="this.style.borderColor='{{ $errors->has('darbinieks_id') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('darbinieks_id') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
                         <option value="" style="color:#999;">-- Izvēlieties darbinieku --</option>
                         @foreach($darbinieki as $d)
                             <option value="{{ $d->ID }}" {{ old('darbinieks_id') == $d->ID ? 'selected' : '' }} style="padding:8px;">{{ $d->vards }}</option>
                         @endforeach
                     </select>
+                    @if($errors->has('darbinieks_id'))
+                        <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('darbinieks_id') }}</small>
+                    @endif
                 </div>
                 <div>
                     <label style="font-weight:600; display:block; margin-bottom:10px; color:#333; font-size:15px;">Telpa <span style="color:#f44336;">*</span></label>
-                    <select name="telpa_id" style="width:100%; padding:14px 16px; border:2px solid #e0e0e0; border-radius:10px; font-size:15px; transition:all 0.3s; background:#fafafa; cursor:pointer;" onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" onblur="this.style.borderColor='#e0e0e0'; this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <select name="telpa_id" 
+                        style="width:100%; padding:14px 16px; border:2px solid {{ $errors->has('telpa_id') ? '#f44336' : '#e0e0e0' }}; border-radius:10px; font-size:15px; transition:all 0.3s; background:{{ $errors->has('telpa_id') ? '#fff8f8' : '#fafafa' }}; cursor:pointer;"
+                        onfocus="this.style.borderColor='#4CAF50'; this.style.background='white'; this.style.boxShadow='0 0 0 4px rgba(76,175,80,0.1)'" 
+                        onblur="this.style.borderColor='{{ $errors->has('telpa_id') ? '#f44336' : '#e0e0e0' }}'; this.style.background='{{ $errors->has('telpa_id') ? '#fff8f8' : '#fafafa' }}'; this.style.boxShadow='none'">
                         <option value="" style="color:#999;">-- Izvēlieties telpu --</option>
                         @foreach($telpas as $t)
                             <option value="{{ $t->ID }}" {{ old('telpa_id') == $t->ID ? 'selected' : '' }} style="padding:8px;">{{ $t->nosaukums }}</option>
                         @endforeach
                     </select>
+                    @if($errors->has('telpa_id'))
+                        <small style="color: #f44336; margin-top: 6px; display: block; font-size:13px; font-weight:500;">⚠️ {{ $errors->first('telpa_id') }}</small>
+                    @endif
                 </div>
             </div>
             
