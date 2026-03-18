@@ -59,8 +59,8 @@
                         <td style="text-align:center;">{{ $item->sakuma_laiks }}</td>
                         <td style="text-align:center;">{{ $item->beigu_laiks }}</td>
                         <td style="text-align:center;">{{ $item->apraksts }}</td>
-                        <td style="text-align:center;">{{ $item->atbildiga_persona }}</td>
-                        <td style="text-align:center;">{{ $item->telpa }}</td>
+                        <td style="text-align:center;">{{ $item->darbinieks_id }}</td>
+                        <td style="text-align:center;">{{ $item->telpa_id }}</td>
                         <td style="text-align:center;">
                             <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
                                 <a href="{{ route('pasakumi.edit', $item->ID) }}" class="btn edit">Rediģēt</a>
