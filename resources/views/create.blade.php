@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+<link rel="stylesheet" href="{{ asset('css/create.css') }}">
 
 <div class="pasakumi-container">
         <h1 class="page-title">Pievienot jaunu pasākumu</h1>
