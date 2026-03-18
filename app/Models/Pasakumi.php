@@ -38,3 +38,5 @@ class Pasakumi extends Model
     {
         return $this->belongsTo(Lietotajs::class, 'darbinieks_id', 'ID');
     }
+
+}
