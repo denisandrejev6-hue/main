@@ -312,10 +312,11 @@ button:hover, .btn:hover {
       @auth
         <a href="/" class="btn">Sākumlapa</a>
         <a href="/pasakumi" class="btn">Pasakumi</a>
-        <a href="/telpas" class="btn">Telpas</a>
         @if(auth()->user()->loma !== 'Lietotajs')
+          <a href="/telpas" class="btn">Telpas</a>
           <a href="/lietotaji" class="btn">Lietotāji</a>
           <a href="/rezerveskopijas" class="btn">Rezerves kopijas</a>
+          <a href="/kategorijas" class="btn">Kategorijas</a>
         @endif
       @endauth
     </div>
