@@ -15,7 +15,7 @@ class PasakumuController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if (!$user->loma === 'admin'&& !$user->loma === 'lietotajs') {
+        if (!$user->loma === 'admin' || !$user->loma === 'lietotajs') {
             // darbinieks redz tikai savus pasākumus
             $items = Pasakumi::where('darbinieks_id', $user->ID)
                     ->orderBy('ID', 'asc')
