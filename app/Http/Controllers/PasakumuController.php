@@ -29,15 +29,20 @@ class PasakumuController extends Controller
     
     
     
-    // // list using legacy primary key
-    //     $items = Pasakumi::orderBy('ID', 'asc')->get();
-    //     return view('alldata', ['data' => $items]);
+             // // list using legacy primary key
+         //     $items = Pasakumi::orderBy('ID', 'asc')->get();
+         //     return view('alldata', ['data' => $items]);
 
-if ($user->loma === 'Darbinieks') {
-    // darbinieks redz tikai savus pasākumus
-    $items = Pasakumi::where('darbinieks_id', $user->ID)
+        if ($user->loma === 'Darbinieks') {
+              // darbinieks redz tikai savus pasākumus
+          $items = Pasakumi::where('darbinieks_id', $user->ID)
             ->orderBy('ID', 'asc')
             ->get();        
+         }
+          else {
+        // admin un lietotājs redz visus pasākumus
+        $items = Pasakumi::orderBy('ID', 'asc')->get();
+            }
     }
 
     /**
