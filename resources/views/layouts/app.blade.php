@@ -316,7 +316,7 @@ button:hover, .btn:hover {
           <a href="/telpas" class="btn">Telpas</a>
           <a href="/lietotaji" class="btn">Lietotāji</a>
           <a href="/rezerveskopijas" class="btn">Rezerves kopijas</a>
-          <a href="/kategorijas" class="btn">Kategorijas</a>
+          <a href="/kategorijas/" class="btn">Kategorijas</a>
         @endif
       @endauth
     </div>
