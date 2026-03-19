@@ -19,7 +19,7 @@ class KategorijuController extends Controller
         $items = Kategorija::orderBy('ID', 'asc')->get();
         
         // Atgriež skatu ar kategoriju sarakstu
-        return view('kategorijas.index', ['data' => $items]);
+        return view('kategorija.index', ['data' => $items]);
     }
 
     /**
@@ -33,7 +33,7 @@ class KategorijuController extends Controller
         }
 
         // Atgriež skatu ar kategorijas izveides formu
-        return view('create_kategorija');
+        return view('kategorija.create');
     }
 
 
