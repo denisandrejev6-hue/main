@@ -15,11 +15,11 @@ class PasakumuController extends Controller
     public function index()
     {
     if (auth()->user()->loma === 'Lietotajs') {
-        $item = Pasakumi::where('darbinieks_id', auth()->id())->get();
+        $pasakums = Pasakumi::where('darbinieks_id', auth()->id())->get();
     } else {
-        $item = Pasakumi::all();
+        $pasakums = Pasakumi::all();
     }
-    return view('pasakumi', ['pasakumi' => $item]);
+    return view('pasakumi', ['pasakumi' => $pasakums]);
     }
 
     /**
