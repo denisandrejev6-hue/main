@@ -306,31 +306,22 @@ button:hover, .btn:hover {
 </style>
 </head>
 <body>
-  <header>
-    <div class="nav container" style="display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap;">
-      @auth
-        <a href="/" class="btn">Sākumlapa</a>
-        <a href="/pasakumi" class="btn">Pasakumi</a>
-        <a href="/telpas" class="btn">Telpas</a>
-        @if(auth()->user()->loma !== 'Lietotajs')
-          <a href="/lietotaji" class="btn">Lietotāji</a>
-          <a href="/rezerveskopijas" class="btn">Rezerves kopijas</a>
-        @endif
-      @endauth
+<!-- special top-right container for auth controls -->
+<div class="auth-container">
+  @if(auth()->check())
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="margin-right: 10px;">
+        {{ auth()->user()->name }} ({{ auth()->user()->loma }})
+      </span>
+      <form method="POST" action="/logout" style="display:inline">
+        @csrf
+        <button class="btn secondary" type="submit">Izrakstīties</button>
+      </form>
     </div>
-
-    <!-- special top-right container for auth controls -->
-    <div class="auth-container">
-      @if(auth()->check())
-        <form method="POST" action="/logout" style="display:inline">
-          @csrf
-          <button class="btn secondary" type="submit">Izrakstīties</button>
-        </form>
-      @else
-        <a href="/login" class="btn">Ielogoties</a>
-      @endif
-    </div>
-  </header>
+  @else
+    <a href="/login" class="btn">Ielogoties</a>
+  @endif
+</div>
 
   <main class="container" style="display:flex; gap:24px;">
     <div style="flex:1">
