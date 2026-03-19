@@ -306,6 +306,7 @@ button:hover, .btn:hover {
 </style>
 </head>
 <body>
+  // navigacijas josla
   <header>
     <div class="nav container" style="display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap;">
       @auth
@@ -319,7 +320,7 @@ button:hover, .btn:hover {
       @endauth
     </div>
 
-<!-- special top-right container for auth controls -->
+// kreisajā augšējā stūrī izveidojam kastīti, kurā parādās lietotāja vārds, uzvārds un loma un poga izrakstities\ielogoties
 <div class="auth-container">
   @if(auth()->check())
     <div style="display: flex; align-items: center; gap: 10px;">
