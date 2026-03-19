@@ -19,7 +19,7 @@ class PasakumuController extends Controller
     } else {
         $pasakumi = Pasakumi::all();
     }
-    return view('index', ['pasakumi' => $pasakumi]);
+    return view('pasakumi', ['pasakumi' => $pasakumi]);
     }
 
     /**
