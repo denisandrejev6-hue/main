@@ -306,6 +306,19 @@ button:hover, .btn:hover {
 </style>
 </head>
 <body>
+  <header>
+    <div class="nav container" style="display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap;">
+      @auth
+        <a href="/" class="btn">Sākumlapa</a>
+        <a href="/pasakumi" class="btn">Pasakumi</a>
+        <a href="/telpas" class="btn">Telpas</a>
+        @if(auth()->user()->loma !== 'Lietotajs')
+          <a href="/lietotaji" class="btn">Lietotāji</a>
+          <a href="/rezerveskopijas" class="btn">Rezerves kopijas</a>
+        @endif
+      @endauth
+    </div>
+
 <!-- special top-right container for auth controls -->
 <div class="auth-container">
   @if(auth()->check())
@@ -322,6 +335,7 @@ button:hover, .btn:hover {
     <a href="/login" class="btn">Ielogoties</a>
   @endif
 </div>
+  </header>
 
   <main class="container" style="display:flex; gap:24px;">
     <div style="flex:1">
