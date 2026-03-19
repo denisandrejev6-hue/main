@@ -25,4 +25,4 @@ Route::resource('pasakumi', PasakumuController::class)->middleware(['auth', 'rol
 Route::resource('telpas', TelpasController::class)->middleware(['auth', 'role:Admin,Darbinieks,Lietotajs']);
 Route::resource('lietotaji', LietotajuController::class)->middleware(['auth', 'role:Admin,Darbinieks']);
 Route::resource('rezerveskopijas', RezervesKopijuController::class)->middleware(['auth', 'role:Admin,Darbinieks']);
-Route::resource('kategorija', KategorijuController::class)->middleware(['auth', 'role:Admin,Darbinieks']);
+Route::resource('kategorijas', KategorijuController::class)->middleware(['auth', 'role:Admin,Darbinieks']);
