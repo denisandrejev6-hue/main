@@ -9,16 +9,25 @@ use App\Models\Lietotajs;
 
 class PasakumuController extends Controller
 {
-    /**
-     * Display a listing of the pasakumi.
-     */
+
     public function index()
     {
-        // list using legacy primary key
-        $items = Pasakumi::orderBy('ID', 'asc')->get();
+        $user = auth()->user();
+        
+        // Ja lietotājs ir Darbinieks, rāda tikai viņa pasākumus
+        if ($user->loma === 'Darbinieks') {
+            $items = Pasakumi::where('darbinieks_id', $user->ID)
+                            ->orderBy('ID', 'asc')
+                            ->get();
+        } 
+        // Ja lietotājs ir Administrators vai cits, rāda visus pasākumus
+        else {
+            $items = Pasakumi::orderBy('ID', 'asc')->get();
+        }
+        
         return view('alldata', ['data' => $items]);
     }
-
+}
     /**
      * Show the form for creating a new pasakumi.
      */
