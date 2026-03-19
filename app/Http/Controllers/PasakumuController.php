@@ -14,35 +14,12 @@ class PasakumuController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        // if (!$user->loma === 'admin' || !$user->loma === 'lietotajs') {
-        //     // darbinieks redz tikai savus pasākumus
-        //     $items = Pasakumi::where('darbinieks_id', $user->ID)
-        //             ->orderBy('ID', 'asc')
-        //             ->get();
-
-
-        //     return view('alldata', ['data' => $items]);
-        // }
-        
-    
-    
-    
-    
-             // // list using legacy primary key
-         //     $items = Pasakumi::orderBy('ID', 'asc')->get();
-         //     return view('alldata', ['data' => $items]);
-
-        if ($user->loma === 'Darbinieks') {
-              // darbinieks redz tikai savus pasākumus
-          $items = Pasakumi::where('darbinieks_id', $user->ID)
-            ->orderBy('ID', 'asc')
-            ->get();        
-         }
-          else {
-        // admin un lietotājs redz visus pasākumus
-        $items = Pasakumi::orderBy('ID', 'asc')->get();
-            }
+    if (auth()->user()->loma === 'Lietotajs') {
+        $pasakumi = Pasakumi::where('darbinieks_id', auth()->id())->get();
+    } else {
+        $pasakumi = Pasakumi::all();
+    }
+    return view('index', ['pasakumi' => $pasakumi]);
     }
 
     /**
