@@ -14,6 +14,7 @@ class PasakumuController extends Controller
      */
     public function index()
     {
+        $pasakums = Pasakumi::all();
     if (auth()->user()->loma === 'Lietotajs') {
         $pasakums = Pasakumi::where('darbinieks_id', auth()->id())->get();
     } else {
