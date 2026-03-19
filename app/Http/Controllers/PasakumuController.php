@@ -14,13 +14,14 @@ class PasakumuController extends Controller
      */
     public function index()
     {
-        $pasakums = Pasakumi::all();
+        // list using legacy primary key
+        $items = Pasakumi::orderBy('ID', 'asc')->get();
     if (auth()->user()->loma === 'Lietotajs') {
-        $pasakums = Pasakumi::where('darbinieks_id', auth()->id())->get();
+        $items = Pasakumi::where('darbinieks_id', auth()->id())->get();
     } else {
-        $pasakums = Pasakumi::all();
+        $items = Pasakumi::all();
     }
-    return view('pasakumi', ['pasakumi' => $pasakums]);
+    return view('pasakumi', ['pasakumi' => $items]);
     }
 
     /**
