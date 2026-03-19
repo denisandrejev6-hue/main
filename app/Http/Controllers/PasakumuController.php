@@ -27,7 +27,7 @@ class PasakumuController extends Controller
         
         return view('alldata', ['data' => $items]);
     }
-}
+
     /**
      * Show the form for creating a new pasakumi.
      */
@@ -91,8 +91,8 @@ class PasakumuController extends Controller
         return view('details', ['data' => $item]);
     }
 
-public function edit($id)
-{
+    public function edit($id)
+    {
     if (auth()->user()->loma === 'Lietotajs') {
         abort(403);
     }
@@ -104,7 +104,7 @@ public function edit($id)
                     ->get();
 
     return view('edit', compact('item', 'telpas', 'darbinieki')); 
-}
+    }
 
     /**
      * Update the specified resource in storage.
