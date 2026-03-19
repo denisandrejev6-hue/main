@@ -16,12 +16,7 @@ class PasakumuController extends Controller
     {
         // list using legacy primary key
         $items = Pasakumi::orderBy('ID', 'asc')->get();
-    if (auth()->user()->loma === 'Lietotajs') {
-        $items = Pasakumi::where('darbinieks_id', auth()->id())->get();
-    } else {
-        $items = Pasakumi::all();
-    }
-    return view('pasakumi', ['pasakumi' => $items]);
+        return view('alldata', ['data' => $items]);
     }
 
     /**
@@ -152,6 +147,4 @@ public function edit($id)
         }
         return redirect('/pasakumi')->with('success', 'Dati veiksmīgi izdzēsti');
     }
-
-    
 }
