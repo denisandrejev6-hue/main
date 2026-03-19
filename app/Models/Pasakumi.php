@@ -10,7 +10,7 @@ class Pasakumi extends Model
     protected $table = 'pasakumi';
     protected $primaryKey = 'ID';
     public $incrementing = true;
-    public $timestamps = false; // no created_at/updated_at columns
+    public $timestamps = false; // nav created_at/updated_at lauku
 
     /**
      * The attributes that are mass assignable.
