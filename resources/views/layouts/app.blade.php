@@ -324,8 +324,8 @@ button:hover, .btn:hover {
   @if(auth()->check())
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="margin-right: 10px;">
-        {{ auth()->user()->name }} ({{ auth()->user()->loma }})
-      </span>
+    {{ auth()->user()->vards }} {{ auth()->user()->uzvards }} ({{ auth()->user()->loma }})
+    </span>
       <form method="POST" action="/logout" style="display:inline">
         @csrf
         <button class="btn secondary" type="submit">Izrakstīties</button>
