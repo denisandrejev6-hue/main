@@ -19,7 +19,7 @@ class KategorijuController extends Controller
         $items = Kategorija::orderBy('ID', 'asc')->get();
         
         // Atgriež skatu ar kategoriju sarakstu
-        return view('kategorija.index', ['data' => $items]);
+        return view('kategorijas.index', ['data' => $items]);
     }
 
     /**

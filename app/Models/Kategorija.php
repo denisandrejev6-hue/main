@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kategorija extends Model
 {
     // legacy table
-    protected $table = 'kategorija';
+    protected $table = 'kategorijas';
     protected $primaryKey = 'ID';
     public $incrementing = true;
     public $timestamps = false;
