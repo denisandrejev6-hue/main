@@ -1,42 +1,48 @@
-{{-- resources/views/telpas/index.blade.php --}}
+{{-- resources/views/kategorijas/index.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
-    <h1>Kategoriju saraksts</h1>
+    <div class="container">
+        <h1>Kategoriju saraksts</h1>
 
-    @if(session('success'))
-        <div class="flash flash-success">{{ session('success') }}</div>
-    @endif
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-    @if(auth()->user()->loma !== 'Lietotajs')
-        <a href="{{ route('kategorijas.create') }}" class="btn">Pievienot jaunu kategoriju</a>
-    @endif
+        @if(auth()->user()->loma !== 'Lietotajs')
+            <a href="{{ route('kategorijas.create') }}" class="btn btn-primary">Pievienot jaunu kategoriju</a>
+        @endif
 
-    <table border="1" cellpadding="12" cellspacing="0" style="margin-top:16px; width:100%; border-collapse:collapse; table-layout:auto;">
-        <thead>
-            <tr>
-                <th style="text-align:center;">Nosaukums</th>
-                @if(auth()->user()->loma !== 'Lietotajs')
-                    <th style="text-align:center;">Darbības</th>
-                @endif
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($data as $item)
+        <table class="table table-bordered mt-4">
+            <thead>
                 <tr>
-                    <td style="text-align:center;">{{ $item->nosaukums }}</td>
+                    <th>Nosaukums</th>
                     @if(auth()->user()->loma !== 'Lietotajs')
-                        <td style="text-align:center;">
-                            <a href="{{ route('kategorijas.edit', $item->ID) }}" class="btn secondary">Rediģēt</a>
-                            <form action="{{ route('kategorijas.destroy', $item->ID) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn danger" onclick="return confirm('Vai tiešām vēlaties dzēst šo kategoriju?')">Dzēst</button>
-                            </form>
-                        </td>
+                        <th>Darbības</th>
                     @endif
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse($data as $item)
+                    <tr>
+                        <td>{{ $item->nosaukums }}</td>
+                        @if(auth()->user()->loma !== 'Lietotajs')
+                            <td>
+                                <a href="{{ route('kategorijas.edit', $item->ID) }}" class="btn btn-sm btn-warning">Rediģēt</a>
+                                <form action="{{ route('kategorijas.destroy', $item->ID) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Vai tiešām vēlaties dzēst šo kategoriju?')">Dzēst</button>
+                                </form>
+                            </td>
+                        @endif
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="2" class="text-center">Nav pievienotu kategoriju</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 @endsection
